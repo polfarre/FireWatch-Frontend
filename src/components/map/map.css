@@ -1,4 +1,6 @@
-.full-height-map {
-    height: 100vh;
+.fullHeightMap{
+    height: 90vh;
+    width: 100vw;
+    box-sizing: content-box;
   }
   

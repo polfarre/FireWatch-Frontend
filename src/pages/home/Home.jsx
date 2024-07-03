@@ -1,9 +1,10 @@
 import React from 'react'
-import Map from "../components/map/Map";
+import Map from '../../components/map/Map'
+import './home.css'
 
 const Home = () => {
   return (
-    <div>
+    <div id="containerHome">
       <Map />
     </div>
   )

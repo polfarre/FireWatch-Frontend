@@ -9,11 +9,11 @@ import './map.css'
 const Map = () => {
   return (
         <MapContainer
-          className="full-height-map"
+          className="fullHeightMap"
           center={[40.463667, -3.74922]}
           zoom={6}
-          minZoom={7}
-          maxZoom={14}
+          minZoom={3}
+          maxZoom={19}
           scrollWheelZoom={true}>
             <TileLayer
              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
