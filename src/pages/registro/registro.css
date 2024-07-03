@@ -15,9 +15,7 @@
 .notification {
     margin-top: 20px;
     padding: 10px;
-    border: 1px solid #ada051;
-    background-color: #dff0d8;
-    color: #ff7f76;
+    color: black;
     border-radius: 5px;
     text-align: center;
 }
