@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  firewatch-frontend:
+    image: firewatch-frontend
+    container_name: firewatch-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ".:/app"
+      - "/app/node_modules"
+    env_file:
+      - .env
+    ports:
+      - "5173:5173"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
