@@ -65,9 +65,9 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/" className="link">
+          <NavLink to="/registro" className="link">
             Registrar incendio
-          </Link>
+          </NavLink>
         </li>
         <li>
           <Link to="/" className="link">
