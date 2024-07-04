@@ -1,5 +1,5 @@
 .fullHeightMap{
-    height: 90vh;
+    height: 85vh;
     width: 100vw;
     box-sizing: content-box;
   }
@@ -22,4 +22,13 @@
     cursor: pointer;
   }
 
+  .leaflet-control-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
+  .popup-content strong {
+    line-height: 4;
+  }
