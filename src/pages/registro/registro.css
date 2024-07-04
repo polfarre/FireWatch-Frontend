@@ -4,7 +4,7 @@
 
 .formTitle {
     color: #832002;
-    margin: 0.5rem;
+    margin: 2rem;
 }
 
 .formSubtitle {
@@ -29,13 +29,14 @@
     justify-content: center;
     min-height: 100vh;
     background-color: bisque;
-    padding: 20px;
+    padding: 0px;
 }
 
 .form {
     width: 80%;
     max-width: 800px;
-    padding: 20px;
+    height: 80vh;
+    padding: 0px;
     background-color: #f8f6f6;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -45,11 +46,9 @@
     text-align: center;
 }
 
-.columns {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    margin-bottom: 20px;
+fieldset{
+    width: 80%;
+    padding:1rem 2rem;
 }
 
 .column {
@@ -105,12 +104,12 @@
 }
 
 .inputRegist.coord{
-    width: 6.5rem;
+    width: 12rem;
     margin-inline: 0.2rem;
 }
 
 .dates {
-    width: 6.5rem;
+    width: 8rem;
     margin-inline: 0.2rem;
 }
 
@@ -118,6 +117,7 @@ legend {
     color: gray;
     font-size: x-small;
     margin: 0.5rem;
+    padding: 0.5rem;
 }
 
 @media (max-width: 768px) {
