@@ -28,7 +28,18 @@ const SearchField = () => {
     style: 'bar',
     autoClose: true,
     keepResult: true,
-    searchLabel: 'Busca tu ciudad'
+    searchLabel: 'Busca tu ciudad',
+    showPopup: true,
+    popupFormat: ({ result }) => {
+      return `
+        <div>
+          <strong>Ciudad:</strong> ${result.label} <br />
+          <strong>Latitud:</strong> ${result.y} <br />
+          <strong>Longitud:</strong> ${result.x} <br />
+          <button id="buttonIncident">Reportar un incendio</button>
+        </div>
+      `;
+    },
   });
 
   React.useEffect(() => {
