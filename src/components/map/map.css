@@ -37,17 +37,30 @@
   border-radius: 10px;
   padding: 7px;
   margin-bottom: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+#buttonIncidentLocate:hover {
+  background-color: #0056b3;
+}
+
+
 
 #buttonIncidentSearch {
   color: white;
   background-color:  #013068 ;
+  text-decoration: none;
   border: none;
   border-radius: 10px;
-  padding: 7px;
-  margin-left: 50px;
-  margin-top: 5px;
+  padding: 6px;
+  margin-left: 70px;
 }
-  .popup-content strong {
-    line-height: 4;
-  }
+
+.button-container {
+  margin-top: 30px; 
+}
+
+.popup-content strong {
+  line-height: 4;
+}

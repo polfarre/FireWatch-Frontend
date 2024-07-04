@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, ZoomControl } from "react-leaflet";
 import L from "leaflet";
 import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
 import { useMap } from "react-leaflet";
 import "leaflet-geosearch/dist/geosearch.css";
+import { useNavigate } from 'react-router-dom';
 import "./map.css";
 
 // bug solution
@@ -33,6 +34,8 @@ const createCustomIcon = (color) => {
 
 const SearchField = () => {
   const map = useMap();
+  const [lastLatitude, setLastLatitude] = useState(0);
+  const [lastLongitude, setLastLongitude] = useState(0);
   const provider = new OpenStreetMapProvider({
     params: {
       countrycodes: "ES",
@@ -47,20 +50,26 @@ const SearchField = () => {
     searchLabel: "Busca tu ciudad",
     showPopup: true,
     popupFormat: ({ result }) => {
+      setLastLatitude(result.y);
+      setLastLongitude(result.x);
       return `
         <div>
           <strong>Ciudad:</strong> ${result.label} <br />
           <strong>Latitud:</strong> ${result.y} <br />
           <strong>Longitud:</strong> ${result.x} <br />
-          <button id="buttonIncidentSearch">Reportar un incendio</button>
+          <div class="buttonContainer">
+          <a id="buttonIncidentSearch" href="/registro?latitud=${result.y}&longitud=${result.x}">Reportar un incendio</a>
+          </div>
         </div>
+        <script>
+        </script>
       `;
     },
   });
 
   React.useEffect(() => {
     map.addControl(searchControl);
-
+   
     return () => map.removeControl(searchControl);
   }, [map, searchControl]);
 
@@ -69,6 +78,7 @@ const SearchField = () => {
 
 const LocateControl = () => {
   const map = useMap();
+  const navigate = useNavigate();
   const handleLocate = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
