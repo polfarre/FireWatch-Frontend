@@ -1,4 +1,6 @@
 .navbar {
+  position: fixed;
+  top: 0;
   background-color: #013068;
   height: 60px;
   width: 100%;
@@ -6,8 +8,6 @@
   align-items: center;
   justify-content: space-between;
   color: #efefef;
-  position: relative;
- 
 }
 
 .container-firewatch {

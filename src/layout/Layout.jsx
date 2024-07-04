@@ -12,9 +12,9 @@ const Layout = () => {
       <div className="navbar-component">
         <Navbar />
       </div>
-      <main>
+      <div className="container-main">
         <Outlet />
-      </main>
+      </div>
       <Footer className="footer-component" />
     </div>
   );
