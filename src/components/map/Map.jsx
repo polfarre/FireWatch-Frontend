@@ -36,7 +36,7 @@ const SearchField = () => {
           <strong>Ciudad:</strong> ${result.label} <br />
           <strong>Latitud:</strong> ${result.y} <br />
           <strong>Longitud:</strong> ${result.x} <br />
-          <button id="buttonIncident">Reportar un incendio</button>
+          <button id="buttonIncidentSearch">Reportar un incendio</button>
         </div>
       `;
     },
@@ -59,8 +59,9 @@ const LocateControl = () => {
         const { latitude, longitude } = position.coords;
         map.flyTo([latitude, longitude], 13);
         L.marker([latitude, longitude]).addTo(map)
-        .bindPopup(`${latitude} , ${longitude} <br/>
-          <button id="buttonIncident">Reportar un incendio</button>`
+        .bindPopup(`<strong>Latitud:</strong> ${latitude} <br/>
+          <strong>Longitud:</strong> ${longitude} <br/> <br/>
+          <button id="buttonIncidentLocate">Reportar incendio</button>`
         )
         .openPopup();
       }, (error) => {
