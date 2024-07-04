@@ -5,6 +5,7 @@ import L from 'leaflet'
 import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
 import { useMap } from 'react-leaflet';
 import 'leaflet-geosearch/dist/geosearch.css';
+import { useNavigate } from 'react-router-dom';
 import './map.css'
 
 // bug solution
@@ -57,7 +58,7 @@ const SearchField = () => {
 
   React.useEffect(() => {
     map.addControl(searchControl);
-
+   
     return () => map.removeControl(searchControl);
   }, [map, searchControl]);
 
@@ -66,6 +67,7 @@ const SearchField = () => {
 
 const LocateControl = () => {
   const map = useMap();
+  const navigate = useNavigate();
   const handleLocate = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -75,9 +77,13 @@ const LocateControl = () => {
         L.marker([latitude, longitude], { icon: fireIcon }).addTo(map)
         .bindPopup(`<strong>Latitud:</strong> ${latitude} <br/>
           <strong>Longitud:</strong> ${longitude} <br/> <br/>
-          <button id="buttonIncidentLocate">Reportar incendio</button>`
+             <button id="buttonIncidentLocate">Reportar incendio</button>`
         )
         .openPopup();
+
+        document.getElementById("buttonIncidentLocate").onclick = () => {
+          navigate(`/registro?latitud=${latitude}&longitud=${longitude}`);
+        };
       }, (error) => {
         console.error('Error getting location: ', error);
         alert('Unable to retrieve your location');

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useSearchParams } from 'react-router-dom';
 import "./registro.css";
 
 const Registro = () => {
+  const [searchParams] = useSearchParams();
   const [formData, setFormData] = useState({
-    latitud: "",
-    longitud: "",
+    latitud: searchParams.get('latitud') || "",
+    longitud: searchParams.get('longitud') || "",
     temperatura: "",
     tamaño: "",
     intensidad: "",
