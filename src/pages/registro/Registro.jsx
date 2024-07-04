@@ -10,6 +10,7 @@ const Registro = () => {
     tamaño: "",
     intensidad: "",
   });
+  const [showNotification, setShowNotification] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -22,26 +23,31 @@ const Registro = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formBody = Object.keys(formData)
-      .map(
-        (key) =>
-          encodeURIComponent(key) + "=" + encodeURIComponent(formData[key])
-      )
-      .join("&");
+    const data = {
+      latitud: parseFloat(formData.latitud),
+      longitud: parseFloat(formData.longitud),
+      temperatura: parseFloat(formData.temperatura),
+      tamano: parseFloat(formData.tamano),
+      intensidad: parseFloat(formData.intensidad),
+    };
 
     try {
       const response = await fetch("http://localhost:8000/incendios/reportar", {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        body: formBody,
+        body: JSON.stringify(data),
       });
 
       if (response.ok) {
-        const data = await response.json();
-        console.log("Envío de datos correcto", data);
-        localStorage.setItem("token", data.access_token);
+        const responseData = await response.json();
+        console.log("Envío de datos correcto", responseData);
+        setShowNotification(true);
+        setTimeout(() => {
+          setShowNotification(false);
+        }, 20000);
         window.location.replace("/");
       } else {
         const errorData = await response.json();
@@ -60,7 +66,7 @@ const Registro = () => {
         <div className="reg-form-container">
           <h1 className="reg-title">Formulario de registro de incendio</h1>
           <h3 className="reg-subtitle">Rellene los siguientes campos:</h3>
-          <h2 className="form-subtitles">Latitud y Longitud*</h2>{" "}
+          <h2 className="form-subtitles">Latitud y Longitud*</h2>
           <div className="reg-container">
             <input
               type="text"
@@ -87,7 +93,7 @@ const Registro = () => {
               type="number"
               name="temperatura"
               className="input-reg input-data"
-              placeholder="Temperatura"
+              placeholder="Temperatura*"
               value={formData.temperatura}
               onChange={handleChange}
               required
@@ -95,25 +101,27 @@ const Registro = () => {
             <span className="input-suffix">°C</span>
             <input
               type="number"
-              name="tamaño"
+              name="tamano"
               className="input-reg input-data"
-              placeholder="Tamaño*"
-              value={formData.tamaño}
+              placeholder="tamano*"
+              value={formData.tamano}
               onChange={handleChange}
               required
             />
-            <span className="input-suffix">km²</span>
+            <span className="input-suffix">m²</span>
           </div>
           <h2 className="form-subtitles">Intensidad</h2>
           <div className="reg-container reg-suffix">
             <input
-              type="text"
+              type="number"
               name="intensidad"
               className="input-reg input-data"
               placeholder="Intensidad"
               value={formData.intensidad}
               onChange={handleChange}
+              required
             />
+            <span className="input-suffix">%</span>
           </div>
           {showNotification && (
             <div className="notification">
@@ -124,7 +132,7 @@ const Registro = () => {
             </div>
           )}
         </div>
-        <button className="form-buttons" id="blue-button-reg" >
+        <button className="form-buttons" id="blue-button-reg">
           Enviar
         </button>
       </form>
