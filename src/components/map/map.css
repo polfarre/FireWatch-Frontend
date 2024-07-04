@@ -1,66 +1,68 @@
 .fullHeightMap{
-    height: 86.8vh;
-    width: 100vw;
-    box-sizing: content-box;
-    z-index: 8000;
-  }
-  
-  .customSearchControl {
-    margin-top: 50px; 
-    margin-left: 10px; 
-  }
+  height: 85vh;
+  width: 100vw;
+  box-sizing: content-box;
+}
 
-  #buttonLocation {
-    position: absolute;
-    top: 20px;
-    left: 10px;
-    z-index: 1000;
-    width: 40px;
-    height: 40px;
-    background: url(../../assets/locationIcon.svg) no-repeat center center;
-    background-size: contain;
-    border: none;
-    cursor: pointer;
-  }
+.customSearchControl {
+  margin-top: 50px; 
+  margin-left: 10px; 
+}
 
-  .leaflet-control-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+#buttonLocation {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  z-index: 1000;
+  width: 40px;
+  height: 40px;
+  background: url(../../assets/locationIcon.svg) no-repeat center center;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+}
+
+.leaflet-control-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 #buttonIncidentLocate {
-  color: white;
-  background-color:  #013068 ;
-  border: none;
-  border-radius: 10px;
-  padding: 7px;
-  margin-bottom: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+color: white;
+background-color:  #013068 ;
+border: none;
+border-radius: 10px;
+padding: 7px;
+margin-bottom: 5px;
+cursor: pointer;
+transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #buttonIncidentLocate:hover {
-  background-color: #0056b3;
+background-color: #0056b3;
 }
 
 
 
 #buttonIncidentSearch {
-  color: white;
-  background-color:  #013068 ;
-  text-decoration: none;
-  border: none;
-  border-radius: 10px;
-  padding: 6px;
-  margin-left: 70px;
+display: block;
+color: white;
+background-color:  #013068 ;
+text-decoration: none;
+border: none;
+border-radius: 10px;
+margin-top: 15px;
+padding: 6px;
+width: 45%;
+margin-left: 70px;
 }
 
 .button-container {
-  margin-top: 30px; 
+margin-top: 30px; 
 }
 
 .popup-content strong {
-  line-height: 4;
+line-height: 4;
 }
