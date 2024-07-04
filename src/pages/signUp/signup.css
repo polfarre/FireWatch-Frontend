@@ -1,0 +1,60 @@
+.form-input {
+    display: flex;
+    width: 22rem;
+    height: 1rem;
+    border-radius: 10px;
+    border: 2px solid rgb(197, 193, 193);
+    padding: 1rem;
+    color: gray;
+    font-weight: 500;
+    resize: none;
+    margin: 0.2rem;
+}
+
+.signIn-form {
+    height: 80%;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px rgb(216, 216, 216);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-title {
+    margin: 0.2rem;
+}
+
+.sign-subtitles {
+    color: gray;
+    font-weight: bold;
+    font-size: small;
+    margin: 0.17rem;
+}
+
+.sign-buttons {
+    height: 2rem;
+    width: 20rem;
+    border-radius: 10px;
+    border: 2px solid rgb(228, 226, 226);
+    background-color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+#blue-button-sign {
+    width: 15rem;
+    height: 2.5rem;
+    margin-top: 0.5rem;
+    background-color: #013068;
+    color: white;
+}
+#blue-button-sign:hover {
+   transform: scale(1.1);
+}

@@ -26,16 +26,7 @@ const Registro = () => {
       intensidad,
     } = formData;
 
-    if (
-      !nombre ||
-      !correo ||
-      !contacto ||
-      !dni ||
-      !latitud ||
-      !longitud ||
-      !temperatura ||
-      !tamaño
-    ) {
+    if (!nombre || !correo || !contacto || !dni || !latitud || !longitud || !temperatura || !tamaño) {
       alert("Todos los campos son obligatorios");
       return;
     }
@@ -101,9 +92,7 @@ const Registro = () => {
           </fieldset>
         {showNotification && (
           <div className="notification">
-            <article>
-              Agradecemos su colaboración. Gracias por registrar un nuevo foco.
-            </article>
+            <article>Agradecemos su colaboración. Gracias por registrar un nuevo foco.</article>
           </div>
         )}
 

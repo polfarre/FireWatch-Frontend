@@ -1,0 +1,25 @@
+.fullHeightMap{
+    height: 90vh;
+    width: 100vw;
+    box-sizing: content-box;
+  }
+  
+  .customSearchControl {
+    margin-top: 50px; 
+    margin-left: 10px; 
+  }
+
+  #buttonLocation {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    z-index: 1000;
+    width: 40px;
+    height: 40px;
+    background: url(../../assets/locationIcon.svg) no-repeat center center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+  }
+
+
