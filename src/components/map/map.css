@@ -1,7 +1,8 @@
 .fullHeightMap{
-    height: 85vh;
+    height: 86.8vh;
     width: 100vw;
     box-sizing: content-box;
+    z-index: -9999;
   }
   
   .customSearchControl {

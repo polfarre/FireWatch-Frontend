@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import 'leaflet/dist/leaflet.css'
-import {MapContainer, TileLayer, ZoomControl} from 'react-leaflet'
-import L from 'leaflet'
-import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
-import { useMap } from 'react-leaflet';
-import 'leaflet-geosearch/dist/geosearch.css';
+import React, { useEffect, useState } from "react";
+import "leaflet/dist/leaflet.css";
+import { MapContainer, TileLayer, ZoomControl } from "react-leaflet";
+import L from "leaflet";
+import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
+import { useMap } from "react-leaflet";
+import "leaflet-geosearch/dist/geosearch.css";
 import { useNavigate } from 'react-router-dom';
-import './map.css'
+import "./map.css";
 
 // bug solution
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+  iconRetinaUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+  iconUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 });
 
 const createCustomIcon = (color) => {
@@ -22,7 +25,7 @@ const createCustomIcon = (color) => {
              <path d="M21 10c0 7.571-9 13-9 13s-9-5.429-9-13a9 9 0 1 1 18 0z"></path>
              <circle cx="12" cy="10" r="3"></circle>
            </svg>`,
-    className: '',
+    className: "",
     iconSize: [24, 24],
     iconAnchor: [12, 24],
     popupAnchor: [0, -24],
@@ -35,16 +38,16 @@ const SearchField = () => {
   const [lastLongitude, setLastLongitude] = useState(0);
   const provider = new OpenStreetMapProvider({
     params: {
-      countrycodes: 'ES', 
+      countrycodes: "ES",
     },
   });
 
   const searchControl = new GeoSearchControl({
     provider,
-    style: 'bar',
+    style: "bar",
     autoClose: true,
     keepResult: true,
-    searchLabel: 'Busca tu ciudad',
+    searchLabel: "Busca tu ciudad",
     showPopup: true,
     popupFormat: ({ result }) => {
       setLastLatitude(result.y);
@@ -78,36 +81,31 @@ const LocateControl = () => {
   const navigate = useNavigate();
   const handleLocate = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-        map.flyTo([latitude, longitude], 13);
-        const fireIcon = createCustomIcon("#0476FF");
-        L.marker([latitude, longitude], { icon: fireIcon }).addTo(map)
-        .bindPopup(`<strong>Latitud:</strong> ${latitude} <br/>
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          map.flyTo([latitude, longitude], 13);
+          const fireIcon = createCustomIcon("#0476FF");
+          L.marker([latitude, longitude], { icon: fireIcon })
+            .addTo(map)
+            .bindPopup(
+              `<strong>Latitud:</strong> ${latitude} <br/>
           <strong>Longitud:</strong> ${longitude} <br/> <br/>
-             <button id="buttonIncidentLocate">Reportar incendio</button>`
-        )
-        .openPopup();
-
-        document.getElementById("buttonIncidentLocate").onclick = () => {
-          navigate(`/registro?latitud=${latitude}&longitud=${longitude}`);
-        };
-      }, (error) => {
-        console.error('Error getting location: ', error);
-        alert('Unable to retrieve your location');
-      });
+          <button id="buttonIncidentLocate">Reportar incendio</button>`
+            )
+            .openPopup();
+        },
+        (error) => {
+          console.error("Error getting location: ", error);
+          alert("Unable to retrieve your location");
+        }
+      );
     } else {
-      alert('Geolocation is not supported by your browser');
+      alert("Geolocation is not supported by your browser");
     }
   };
-  return (
-
-  <button
-    onClick={handleLocate}
-    id="buttonLocation">
-  </button>
-  );
-  };
+  return <button onClick={handleLocate} id="buttonLocation"></button>;
+};
 
 const getColorByIntensity = (intensity) => {
   if (intensity < 30) {
@@ -115,8 +113,7 @@ const getColorByIntensity = (intensity) => {
   }
   if (intensity < 60) {
     return "#FF8D04";
-  }
-  else {
+  } else {
     return "#FF0404";
   }
 };
@@ -125,18 +122,19 @@ const FireMarkers = () => {
   const map = useMap();
 
   useEffect(() => {
-    const apiURL = 'http://0.0.0.0:8000/incendios/';
-
+    const apiURL = "http://localhost:8000/incendios/";
+    console.log("api", apiURL);
     fetch(apiURL)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log("incendios", data);
         data.forEach((fire) => {
-          const [fecha, hora] = fire.fecha_hora_adq.split('T');
+          const [fecha, hora] = fire.fecha_hora_adq.split("T");
           const color = getColorByIntensity(fire.intensidad);
           const fireIcon = createCustomIcon(color);
 
-          L.marker([fire.latitud, fire.longitud], { icon: fireIcon }).addTo(map)
+          L.marker([fire.latitud, fire.longitud], { icon: fireIcon })
+            .addTo(map)
             .bindPopup(
               `
                 <div>
@@ -144,16 +142,16 @@ const FireMarkers = () => {
                   <strong>Latitud:</strong> ${fire.latitud} <br/>
                   <strong>Longitud:</strong> ${fire.longitud} <br/>
                   <strong>Fecha:</strong> ${fecha} <br/>
-                  <strong>Hora:</strong> ${hora.split('.')[0]} <br/>
+                  <strong>Hora:</strong> ${hora.split(".")[0]} <br/>
                   <strong>Temperatura:</strong> ${fire.temperatura}C°<br/>
                   <strong>Area afectada:</strong> ${fire.tamano}m² <br/>
                   <strong>Intensidad:</strong> ${fire.intensidad}% <br/>
                 <div/>
               `
-            )
+            );
         });
       })
-      .catch((error) => console.error('Error:', error));
+      .catch((error) => console.error("Error:", error));
   }, [map]);
 
   return null;
@@ -161,25 +159,25 @@ const FireMarkers = () => {
 
 const Map = () => {
   return (
-        <MapContainer
-          className="fullHeightMap"
-          center={[40.463667, -3.74922]}
-          zoom={6}
-          minZoom={3}
-          maxZoom={19}
-          scrollWheelZoom={true}
-          zoomControl={false}
-          >
-            <TileLayer
-             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-           />
-           <SearchField />
-           <LocateControl />
-           <ZoomControl position="bottomright" />
-           <FireMarkers />
-        </MapContainer>
-  )
-}
+    <MapContainer
+      className="fullHeightMap"
+      center={[40.463667, -3.74922]}
+      zoom={6}
+      minZoom={3}
+      maxZoom={19}
+      scrollWheelZoom={true}
+      zoomControl={false}
+    >
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      />
+      <SearchField />
+      <LocateControl />
+      <ZoomControl position="bottomright" />
+      <FireMarkers />
+    </MapContainer>
+  );
+};
 
-export default Map
+export default Map;

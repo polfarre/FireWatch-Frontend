@@ -11,7 +11,7 @@
 .login-form {
     height: 70%;
     padding: 2rem;
-    margin: 1.97rem;
+    margin: 6.3rem;
     background-color: white;
     border-radius: 10px;
     box-shadow: 1px 1px 1px 1px rgb(216, 216, 216);
@@ -108,7 +108,7 @@
     border-radius: 10px;
     border: 2px solid rgb(197, 193, 193);
     padding: 1rem;
-    color: gray;
+    color: black;
     font-weight: 500;
     resize: none;
 }
