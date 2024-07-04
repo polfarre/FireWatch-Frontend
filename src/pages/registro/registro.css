@@ -9,7 +9,7 @@
 .reg-form {
     height: 70%;
     padding: 1rem;
-    margin: 1rem;
+    margin: 5.5rem;
     background-color: white;
     border-radius: 10px;
     box-shadow: 1px 1px 1px 1px rgb(216, 216, 216);
@@ -80,7 +80,7 @@
     margin:0 1rem
 }
 
-#blue-button {
+#blue-button-reg {
     width: 15rem;
     height: 2.5rem;
     margin-top: 2rem;

@@ -99,7 +99,7 @@ const Registro = () => {
             </div>
           )}
         </div>
-        <button className="reg-button" id="blue-button" type="submit">
+        <button className="form-buttons" id="blue-button-reg" type="submit">
           Enviar
         </button>
       </form>

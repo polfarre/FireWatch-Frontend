@@ -9,13 +9,11 @@ import "./layout.css"
 const Layout = () => {
   return (
     <div className="container-component">
-      <div className="navbar-component">
         <Navbar />
-      </div>
-      <main>
+      <main className="main-container">
         <Outlet />
       </main>
-      <Footer className="footer-component" />
+      <Footer />
     </div>
   );
 };
