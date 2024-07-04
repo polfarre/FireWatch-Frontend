@@ -8,9 +8,9 @@ const Login = () => {
     username: "",
     password: "",
     grant_type: "password",
-    scope: null,
-    client_id: null,
-    client_secret: null
+    scope: "",
+    client_id: "",
+    client_secret: ""
   });
 
   const navigate = useNavigate();
@@ -29,27 +29,35 @@ const Login = () => {
       .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(formData[key]))
       .join('&');
 
-    const response = await fetch("http://0.0.0.0:8000/usuarios/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: formBody
-    });
+    try {
+      const response = await fetch("http://0.0.0.0:8000/usuarios/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: formBody
+      });
 
-    if (response.ok) {
-      const data = await response.json();
-      console.log("Login exitoso:", data);
-      navigate("/");
-    } else {
-      console.error("Error al iniciar sesión");
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Login exitoso:", data);
+        localStorage.setItem('token', data.access_token);
+        window.location.replace("/")
+      } else {
+        const errorData = await response.json();
+        alert(errorData.detail || "Error al iniciar sesión");
+        console.error("Error al iniciar sesión:", errorData);
+      }
+    } catch (error) {
+      alert(error.message || "Error al iniciar sesión");
+      console.error("Error al iniciar sesión:", error);
     }
   };
 
   return (
     <div className="form-container">
       <form className="login-form" onSubmit={handleSubmit}>
-        <h1 className="login-title">Inciar sesión</h1>
+        <h1 className="login-title">Iniciar sesión</h1>
         <h3 id="sign-up">
           ¿No tienes cuenta?
           <NavLink to='/signup' className="text-blue">
