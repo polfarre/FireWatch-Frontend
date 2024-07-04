@@ -55,3 +55,6 @@
     background-color: #013068;
     color: white;
 }
+#blue-button-sign:hover {
+   transform: scale(1.1);
+}
