@@ -8,12 +8,14 @@ import "./layout.css"
 
 const Layout = () => {
   return (
-    <div>
-      <Navbar />
+    <div className="container-component">
+      <div className="navbar-component">
+        <Navbar />
+      </div>
       <main>
         <Outlet />
       </main>
-      <Footer />
+      <Footer className="footer-component" />
     </div>
   );
 };
