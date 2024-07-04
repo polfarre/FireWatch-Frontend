@@ -49,15 +49,14 @@ const SearchField = () => {
     popupFormat: ({ result }) => {
       setLastLatitude(result.y);
       setLastLongitude(result.x);
-      document.getElementById("buttonIncidentSearch").onclick = () => {
-        navigate(`/registro?latitud=${lastLatitude}&longitud=${lastLongitude}`);
-      };
       return `
         <div>
           <strong>Ciudad:</strong> ${result.label} <br />
           <strong>Latitud:</strong> ${result.y} <br />
           <strong>Longitud:</strong> ${result.x} <br />
-          <button id="buttonIncidentSearch">Reportar un incendio</button>
+          <div class="buttonContainer">
+          <a id="buttonIncidentSearch" href="/registro?latitud=${result.y}&longitud=${result.x}">Reportar un incendio</a>
+          </div>
         </div>
         <script>
         </script>

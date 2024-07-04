@@ -49,12 +49,17 @@
 #buttonIncidentSearch {
   color: white;
   background-color:  #013068 ;
+  text-decoration: none;
   border: none;
   border-radius: 10px;
-  padding: 7px;
-  margin-left: 50px;
-  margin-top: 5px;
+  padding: 6px;
+  margin-left: 70px;
 }
-  .popup-content strong {
-    line-height: 4;
-  }
+
+.button-container {
+  margin-top: 30px; 
+}
+
+.popup-content strong {
+  line-height: 4;
+}
