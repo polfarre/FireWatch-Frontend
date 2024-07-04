@@ -1,13 +1,24 @@
 import "./navbar.css";
 import firewatch_logo from "/assets/images/firewatch_logo.svg";
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setToken(null);
   };
 
   return (
@@ -21,12 +32,16 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div className="container-register-navbar">
-        <NavLink className="navlink" to="/login">
-          Iniciar sesión
-        </NavLink>
-        <NavLink className="navlink" to="/signup">
-          Registrarse
-        </NavLink>
+        {!token && (
+          <>
+            <NavLink className="navlink" to="/login">
+              Iniciar sesión
+            </NavLink>
+            <NavLink className="navlink" to="/signup">
+              Registrarse
+            </NavLink>
+          </>
+        )}
         <button
           onClick={toggleMenu}
           type="button"
@@ -43,24 +58,25 @@ const Navbar = () => {
           </svg>
         </button>
       </div>
-
-      <ul className={`menu-list ${isOpen ? "open" : ""}`} id="navbar-sticky">
-        <li>
-          <NavLink to="/myProfile" className="link">
-            Mi perfil
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/registro" className="link">
-            Registrar incendio
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/" className="link">
-            Cerrar sesión
-          </NavLink>
-        </li>
-      </ul>
+      {token && (
+        <ul className={`menu-list ${isOpen ? "open" : ""}`} id="navbar-sticky">
+          <li>
+            <Link to="/" className="link">
+              Mi perfil
+            </Link>
+          </li>
+          <li>
+            <NavLink to="/registro" className="link">
+              Registrar incendio
+            </NavLink>
+          </li>
+          <li>
+            <Link to="/" onClick={handleLogout} className="link">
+              Cerrar sesión
+            </Link>
+          </li>
+        </ul>
+      )}
     </nav>
   );
 };

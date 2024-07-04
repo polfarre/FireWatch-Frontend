@@ -8,9 +8,9 @@ import "./layout.css"
 
 const Layout = () => {
   return (
-    <div>
-      <Navbar />
-      <main>
+    <div className="container-component">
+        <Navbar />
+      <main className="main-container">
         <Outlet />
       </main>
       <Footer />
