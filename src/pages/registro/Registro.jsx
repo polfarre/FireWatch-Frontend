@@ -1,36 +1,65 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import "./registro.css";
 
 const Registro = () => {
+  const [searchParams] = useSearchParams();
   const [formData, setFormData] = useState({
-    latitud: "",
-    longitud: "",
+    latitud: searchParams.get('latitud') || "",
+    longitud: searchParams.get('longitud') || "",
     temperatura: "",
     tamaño: "",
     intensidad: "",
   });
   const [showNotification, setShowNotification] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { latitud, longitud, temperatura, tamaño } = formData;
 
-    if (
-      !latitud ||
-      !longitud ||
-      !temperatura ||
-      !tamaño
-    ) {
-      alert("Todos los campos marcados con * son obligatorios");
-      return;
+    const data = {
+      latitud: parseFloat(formData.latitud),
+      longitud: parseFloat(formData.longitud),
+      temperatura: parseFloat(formData.temperatura),
+      tamano: parseFloat(formData.tamano),
+      intensidad: parseFloat(formData.intensidad),
+    };
+
+    try {
+      const response = await fetch("http://localhost:8000/incendios/reportar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log("Envío de datos correcto", responseData);
+        setShowNotification(true);
+        setTimeout(() => {
+          setShowNotification(false);
+        }, 20000);
+        window.location.replace("/");
+      } else {
+        const errorData = await response.json();
+        alert(errorData.detail || "Error al enviar los datos");
+        console.error("Error al enviar los datos", errorData);
+      }
+    } catch (error) {
+      alert(error.message || "Error al enviar los datos");
+      console.error("Error al enviar los datos:", error);
     }
-
-    setShowNotification(true);
   };
 
   return (
@@ -39,7 +68,7 @@ const Registro = () => {
         <div className="reg-form-container">
           <h1 className="reg-title">Formulario de registro de incendio</h1>
           <h3 className="reg-subtitle">Rellene los siguientes campos:</h3>
-          <h2 className="form-subtitles">Latitud y Longitud*</h2>{" "}
+          <h2 className="form-subtitles">Latitud y Longitud*</h2>
           <div className="reg-container">
             <input
               type="text"
@@ -48,6 +77,7 @@ const Registro = () => {
               placeholder="Latitud"
               value={formData.latitud}
               onChange={handleChange}
+              required
             />
             <input
               type="text"
@@ -56,6 +86,7 @@ const Registro = () => {
               placeholder="Longitud*"
               value={formData.longitud}
               onChange={handleChange}
+              required
             />
           </div>
           <h2 className="form-subtitles">Temperatura y tamaño del foco*</h2>
@@ -64,31 +95,35 @@ const Registro = () => {
               type="number"
               name="temperatura"
               className="input-reg input-data"
-              placeholder="Temperatura"
+              placeholder="Temperatura*"
               value={formData.temperatura}
               onChange={handleChange}
+              required
             />
             <span className="input-suffix">°C</span>
             <input
               type="number"
-              name="tamaño"
+              name="tamano"
               className="input-reg input-data"
-              placeholder="Tamaño*"
-              value={formData.tamaño}
+              placeholder="tamano*"
+              value={formData.tamano}
               onChange={handleChange}
+              required
             />
-            <span className="input-suffix">km²</span>
+            <span className="input-suffix">m²</span>
           </div>
           <h2 className="form-subtitles">Intensidad</h2>
           <div className="reg-container reg-suffix">
             <input
-              type="text"
+              type="number"
               name="intensidad"
               className="input-reg input-data"
               placeholder="Intensidad"
               value={formData.intensidad}
               onChange={handleChange}
+              required
             />
+            <span className="input-suffix">%</span>
           </div>
           {showNotification && (
             <div className="notification">
@@ -99,7 +134,7 @@ const Registro = () => {
             </div>
           )}
         </div>
-        <button className="form-buttons" id="blue-button-reg" type="submit">
+        <button className="form-buttons" id="blue-button-reg">
           Enviar
         </button>
       </form>

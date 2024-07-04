@@ -8,6 +8,7 @@
   align-items: center;
   justify-content: space-between;
   color: #efefef;
+  z-index: 99999;
 }
 
 .container-firewatch {
@@ -59,10 +60,9 @@
 }
 
 .menu-list {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
   display: none;
+  flex-direction: column;
+  position: fixed;
   padding: 1rem;
   color: black;
   font-weight: 500;
@@ -86,7 +86,7 @@
 }
 
 .menu-list.open {
-  display: block;
+  display: flex;
 }
 
 .navlink {

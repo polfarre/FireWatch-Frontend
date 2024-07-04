@@ -1,53 +1,68 @@
 .fullHeightMap{
-    height: 86.8vh;
-    width: 100vw;
-    box-sizing: content-box;
-    z-index: -9999;
-  }
-  
-  .customSearchControl {
-    margin-top: 50px; 
-    margin-left: 10px; 
-  }
+  height: 85vh;
+  width: 100vw;
+  box-sizing: content-box;
+}
 
-  #buttonLocation {
-    position: absolute;
-    top: 20px;
-    left: 10px;
-    z-index: 1000;
-    width: 40px;
-    height: 40px;
-    background: url(../../assets/locationIcon.svg) no-repeat center center;
-    background-size: contain;
-    border: none;
-    cursor: pointer;
-  }
+.customSearchControl {
+  margin-top: 50px; 
+  margin-left: 10px; 
+}
 
-  .leaflet-control-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+#buttonLocation {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  z-index: 1000;
+  width: 40px;
+  height: 40px;
+  background: url(../../assets/locationIcon.svg) no-repeat center center;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+}
+
+.leaflet-control-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 #buttonIncidentLocate {
-  color: white;
-  background-color:  #013068 ;
-  border: none;
-  border-radius: 10px;
-  padding: 7px;
-  margin-bottom: 5px;
+color: white;
+background-color:  #013068 ;
+border: none;
+border-radius: 10px;
+padding: 7px;
+margin-bottom: 5px;
+cursor: pointer;
+transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#buttonIncidentSearch {
-  color: white;
-  background-color:  #013068 ;
-  border: none;
-  border-radius: 10px;
-  padding: 7px;
-  margin-left: 50px;
-  margin-top: 5px;
+#buttonIncidentLocate:hover {
+background-color: #0056b3;
 }
-  .popup-content strong {
-    line-height: 4;
-  }
+
+
+
+#buttonIncidentSearch {
+display: block;
+color: white;
+background-color:  #013068 ;
+text-decoration: none;
+border: none;
+border-radius: 10px;
+margin-top: 15px;
+padding: 6px;
+width: 45%;
+margin-left: 70px;
+}
+
+.button-container {
+margin-top: 30px; 
+}
+
+.popup-content strong {
+line-height: 4;
+}
