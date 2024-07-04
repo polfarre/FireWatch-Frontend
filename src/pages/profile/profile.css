@@ -4,3 +4,16 @@
     background-color: #E4E5F6;
     align-items: center;
 }
+
+.wrapper-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.reported-fire-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 10px
+}
