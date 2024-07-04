@@ -1,20 +1,18 @@
 .navbar {
-    background-color: #002654cb;
+    background-color: #013068;
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: white;
+    color: #ece9e9;
     font-family: "Roboto", sans-serif;
-    font-weight: 300;
-    font-style: normal;
     position: relative;
-    padding: 0 20px;
+    padding: 0 30px;
 }
 
 .container-firewatch {
     display: flex;
-    gap: 60px;
+    gap: 20px;
 }
 
 .container-logo {
@@ -28,13 +26,19 @@
 }
 
 .firewatch {
-    color: rgb(255, 255, 255);
+    font-size: 2rem;
+    color: rgb(246, 132, 67);
+    font-weight: bold;
+    letter-spacing: 1.3px;
 }
 
 .container-register-navbar {
     display: flex;
     cursor: pointer;
     gap: 40px;
+    font-weight: 300;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .burger-icon {
@@ -63,7 +67,8 @@
     z-index: 10;
     border-radius: 0 0 5px 5px;
     top: 60px;
-    margin-top: 0;
+    margin: 0;
+
   }
 
   .menu-list li {

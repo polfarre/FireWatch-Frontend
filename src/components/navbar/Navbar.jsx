@@ -16,11 +16,11 @@ const Navbar = () => {
         <div className="container-logo">
           <img className="logo" src={firewatch_logo} alt="FireWatch Logo"></img>
         </div>
-        <h2 className="firewatch">FireWatch</h2>
+        <p className="firewatch">FireWatch</p>
       </div>
       <div className="container-register-navbar">
-        <p>Login</p>
-        <p>Sign up</p>
+        <p>Iniciar sesión</p>
+        <p>Registrarse</p>
         <button
           onClick={toggleMenu}
           type="button"
