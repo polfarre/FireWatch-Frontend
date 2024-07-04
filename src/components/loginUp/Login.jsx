@@ -5,7 +5,7 @@ const Login = () => {
   return (
     <div className="form-container">
       <form className="login-form">
-        <h1 className="login-title">Log in</h1>
+        <h1 className="login-title">Inciar sesión</h1>
         <h3 id="sign-up">
           ¿No tienes cuenta?
           <NavLink  to='/signup' className="text-blue" >
