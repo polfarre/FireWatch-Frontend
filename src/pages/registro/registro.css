@@ -79,3 +79,11 @@
 .reg-container{
     margin:0 1rem
 }
+
+#blue-button {
+    width: 15rem;
+    height: 2.5rem;
+    margin-top: 2rem;
+    background-color: #013068;
+    color: white;
+}

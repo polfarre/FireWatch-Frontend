@@ -111,7 +111,7 @@ const FireMarkers = () => {
   const map = useMap();
 
   useEffect(() => {
-    const apiURL = 'http://0.0.0.0:8000/incendios/';
+    const apiURL = 'http://localhost:0.0.0.0:8000/incendios/';
 
     fetch(apiURL)
       .then((response) => response.json())
