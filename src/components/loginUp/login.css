@@ -1,7 +1,7 @@
 .form-container {
     background-color: #E4E5F6;
     width: 100vw;
-    height: 80%;
+    height: 70%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -9,9 +9,9 @@
 }
 
 .login-form {
-    height: 80%;
-    padding: 3rem;
-    margin: 3rem;
+    height: 70%;
+    padding: 2rem;
+    margin: 1.97rem;
     background-color: white;
     border-radius: 10px;
     box-shadow: 1px 1px 1px 1px rgb(216, 216, 216);
@@ -107,8 +107,7 @@
     height: 1.5rem;
     border-radius: 10px;
     border: 2px solid rgb(197, 193, 193);
-    padding-top: 2rem;
-    padding-left: 1rem;
+    padding: 1rem;
     color: gray;
     font-weight: 500;
     resize: none;

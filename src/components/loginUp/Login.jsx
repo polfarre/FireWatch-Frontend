@@ -16,7 +16,7 @@ const Login = () => {
         <div className="container-textarea"></div>
         <input
           className="form-textarea"
-          typeof="email"
+          type="email"
           name="email"
           id="email"
           required
@@ -26,7 +26,7 @@ const Login = () => {
         <h2 className="form-subtitles">Contraseña</h2>
         <input
           className="form-textarea"
-          typeof="password"
+          type="password"
           name="password"
           id="contraseña"
           required
