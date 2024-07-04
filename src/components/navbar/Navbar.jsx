@@ -27,13 +27,19 @@ const Navbar = () => {
         <div className="container-logo">
           <img className="logo" src={firewatch_logo} alt="FireWatch Logo"></img>
         </div>
-        <NavLink to="/" className="firewatch">FireWatch</NavLink>
+        <NavLink to="/" className="firewatch">
+          FireWatch
+        </NavLink>
       </div>
       <div className="container-register-navbar">
         {!token && (
           <>
-            <NavLink className='navlink' to="/login">Iniciar sesión</NavLink>
-            <NavLink className='navlink' to="/signup">Registrarse</NavLink>
+            <NavLink className="navlink" to="/login">
+              Iniciar sesión
+            </NavLink>
+            <NavLink className="navlink" to="/signup">
+              Registrarse
+            </NavLink>
           </>
         )}
         <button
@@ -43,31 +49,11 @@ const Navbar = () => {
           aria-controls="navbar-sticky"
           aria-expanded={isOpen ? "true" : "false"}
         >
-          <svg
-            className="burger-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg className="burger-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="SVGRepo_iconCarrier">
-              <path
-                d="M5 12H20"
-                stroke="#ffffff"
-                strokeWidth="2"
-                strokeLinecap="round"
-              ></path>
-              <path
-                d="M5 17H20"
-                stroke="#ffffff"
-                strokeWidth="2"
-                strokeLinecap="round"
-              ></path>
-              <path
-                d="M5 7H20"
-                stroke="#ffffff"
-                strokeWidth="2"
-                strokeLinecap="round"
-              ></path>
+              <path d="M5 12H20" stroke="#ffffff" strokeWidth="2" strokeLinecap="round"></path>
+              <path d="M5 17H20" stroke="#ffffff" strokeWidth="2" strokeLinecap="round"></path>
+              <path d="M5 7H20" stroke="#ffffff" strokeWidth="2" strokeLinecap="round"></path>
             </g>
           </svg>
         </button>
