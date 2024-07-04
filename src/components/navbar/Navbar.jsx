@@ -1,7 +1,7 @@
 import "./navbar.css";
 import firewatch_logo from "/assets/images/firewatch_logo.svg";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,8 +19,8 @@ const Navbar = () => {
         <p className="firewatch">FireWatch</p>
       </div>
       <div className="container-register-navbar">
-        <p>Iniciar sesión</p>
-        <p>Registrarse</p>
+        <NavLink className='navlink' to="/login">Iniciar sesión</NavLink>
+        <NavLink className='navlink' to="/signup">Registrarse</NavLink>
         <button
           onClick={toggleMenu}
           type="button"
@@ -28,11 +28,31 @@ const Navbar = () => {
           aria-controls="navbar-sticky"
           aria-expanded={isOpen ? "true" : "false"}
         >
-          <svg className="burger-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            className="burger-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <g id="SVGRepo_iconCarrier">
-              <path d="M5 12H20" stroke="#ffffff" strokeWidth="2" strokeLinecap="round"></path>
-              <path d="M5 17H20" stroke="#ffffff" strokeWidth="2" strokeLinecap="round"></path>
-              <path d="M5 7H20" stroke="#ffffff" strokeWidth="2" strokeLinecap="round"></path>
+              <path
+                d="M5 12H20"
+                stroke="#ffffff"
+                strokeWidth="2"
+                strokeLinecap="round"
+              ></path>
+              <path
+                d="M5 17H20"
+                stroke="#ffffff"
+                strokeWidth="2"
+                strokeLinecap="round"
+              ></path>
+              <path
+                d="M5 7H20"
+                stroke="#ffffff"
+                strokeWidth="2"
+                strokeLinecap="round"
+              ></path>
             </g>
           </svg>
         </button>

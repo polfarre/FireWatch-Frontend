@@ -51,7 +51,6 @@
     border: none;
   }
   
-  /* Styles for the menu list */
   .menu-list {
     display: flex;
     flex-direction: column;
@@ -80,10 +79,13 @@
     color: #013068;
   }
   
-  /* Styles applied when isOpen is true */
   .menu-list.open {
     display: block;
   }
   
+  .navlink{
+    text-decoration: none;
+    color: white;
+  }
   
   
