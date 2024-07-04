@@ -1,0 +1,131 @@
+* {
+    box-sizing: border-box;
+}
+
+.formTitle {
+    color: #832002;
+    margin: 0.5rem;
+}
+
+.formSubtitle {
+    color: #555;
+    margin: 0.5rem;
+}
+
+.notification {
+    margin-top: 20px;
+    padding: 10px;
+    color: black;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.formRegist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: bisque;
+    padding: 20px;
+}
+
+.form {
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #f8f6f6;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.columns {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.column {
+    width: calc(50% - 1rem);
+    margin: 0.5rem;
+}
+
+.registContainer {
+    margin-bottom: 1rem;
+}
+
+.inputRegist {
+    width: calc(100% - 1rem);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.inputRegist.coord {
+    width: calc(50% - 5px);
+}
+
+.inputSuffix {
+    display: inline-block;
+    margin-left: 5px;
+    color: #555;
+}
+
+.registButton {
+    width: 50%;
+    background-color: #fa9f88;
+    color: rgb(10, 10, 10);
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.registButton:hover {
+    transform: scale(1.1);
+    background-color: #832002;
+    color: white;
+}
+
+.registContainer input:focus {
+    background-color: rgb(236, 205, 205);
+}
+
+.inputRegist.coord{
+    width: 6.5rem;
+    margin-inline: 0.2rem;
+}
+
+.dates {
+    width: 6.5rem;
+    margin-inline: 0.2rem;
+}
+
+legend {
+    color: gray;
+    font-size: x-small;
+    margin: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .column {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .inputRegist.coord {
+        width: 100%;
+    }
+}
