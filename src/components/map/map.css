@@ -29,6 +29,24 @@
     justify-content: center;
   }
 
+#buttonIncidentLocate {
+  color: white;
+  background-color:  #013068 ;
+  border: none;
+  border-radius: 10px;
+  padding: 7px;
+  margin-bottom: 5px;
+}
+
+#buttonIncidentSearch {
+  color: white;
+  background-color:  #013068 ;
+  border: none;
+  border-radius: 10px;
+  padding: 7px;
+  margin-left: 50px;
+  margin-top: 5px;
+}
   .popup-content strong {
     line-height: 4;
   }
