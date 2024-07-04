@@ -13,7 +13,7 @@ FireWatch es una aplicación web diseñada para proporcionar información actual
 - API de datos: 
 - Página de referencia:
 - Mapas: 
-- Tablas: 
+- Tablas: fastAPI
 - Código Limpio
 - Docker
 - Vitest
