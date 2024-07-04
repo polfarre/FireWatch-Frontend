@@ -1,17 +1,3 @@
-* {
-    box-sizing: border-box;
-}
-
-.formTitle {
-    color: #832002;
-    margin: 2rem;
-}
-
-.formSubtitle {
-    color: #555;
-    margin: 0.5rem;
-}
-
 .notification {
     margin-top: 20px;
     padding: 10px;
@@ -20,33 +6,25 @@
     text-align: center;
 }
 
-.formRegist {
+.reg-form {
+    height: 70%;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px rgb(216, 216, 216);
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: bisque;
-    padding: 0px;
 }
 
-.form {
-    width: 80%;
-    max-width: 800px;
-    height: 80vh;
-    padding: 0px;
-    background-color: #f8f6f6;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.reg-form-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-fieldset{
-    width: 80%;
-    padding:1rem 2rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 1rem
 }
 
 .column {
@@ -54,78 +32,50 @@ fieldset{
     margin: 0.5rem;
 }
 
-.registContainer {
-    margin-bottom: 1rem;
+.reg-title {
+    margin: 0.5rem;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
 }
 
-.inputRegist {
+.reg-subtitle {
+    font-weight: bold;
+    font-size: small;
+    margin-left: 1rem;
+}
+
+.input-reg {
     width: calc(100% - 1rem);
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin-bottom: 10px;
 }
 
-.inputRegist.coord {
-    width: calc(50% - 5px);
+.input-reg.coord {
+    width: 12rem;
+    margin: 0.2rem;
 }
 
-.inputSuffix {
+.input-data {
+    width: 6rem;
+    margin-inline: 0.2rem;
+}
+
+.input-suffix {
     display: inline-block;
-    margin-left: 5px;
+    padding: 0.5rem;
     color: #555;
 }
 
-.registButton {
-    width: 50%;
-    background-color: #fa9f88;
-    color: rgb(10, 10, 10);
-    border: none;
-    padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px;
+.reg-suffix {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0.5rem;
 }
 
-.registButton:hover {
-    transform: scale(1.1);
-    background-color: #832002;
-    color: white;
-}
-
-.registContainer input:focus {
-    background-color: rgb(236, 205, 205);
-}
-
-.inputRegist.coord{
-    width: 12rem;
-    margin-inline: 0.2rem;
-}
-
-.dates {
-    width: 8rem;
-    margin-inline: 0.2rem;
-}
-
-legend {
-    color: gray;
-    font-size: x-small;
-    margin: 0.5rem;
-    padding: 0.5rem;
-}
-
-@media (max-width: 768px) {
-    .column {
-        width: 100%;
-        margin-right: 0;
-        margin-bottom: 20px;
-    }
-
-    .inputRegist.coord {
-        width: 100%;
-    }
+.reg-container{
+    margin:0 1rem
 }
