@@ -8,7 +8,6 @@ const Navbar = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   useEffect(() => {
-    // This effect runs once to check the token in localStorage on initial load
     const storedToken = localStorage.getItem("token");
     setToken(storedToken);
   }, []);
@@ -20,8 +19,6 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setToken(null);
-    // You can navigate to the login page or home page after logout if needed
-    // navigate("/login");
   };
 
   return (
