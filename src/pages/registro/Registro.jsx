@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./registro.css";
 
 const Registro = () => {
@@ -9,28 +10,48 @@ const Registro = () => {
     tamaño: "",
     intensidad: "",
   });
-  const [showNotification, setShowNotification] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { latitud, longitud, temperatura, tamaño } = formData;
 
-    if (
-      !latitud ||
-      !longitud ||
-      !temperatura ||
-      !tamaño
-    ) {
-      alert("Todos los campos marcados con * son obligatorios");
-      return;
+    const formBody = Object.keys(formData)
+      .map(
+        (key) =>
+          encodeURIComponent(key) + "=" + encodeURIComponent(formData[key])
+      )
+      .join("&");
+
+    try {
+      const response = await fetch("http://localhost:8000/incendios/reportar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: formBody,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Envío de datos correcto", data);
+        localStorage.setItem("token", data.access_token);
+        window.location.replace("/");
+      } else {
+        const errorData = await response.json();
+        alert(errorData.detail || "Error al enviar los datos");
+        console.error("Error al enviar los datos", errorData);
+      }
+    } catch (error) {
+      alert(error.message || "Error al enviar los datos");
+      console.error("Error al enviar los datos:", error);
     }
-
-    setShowNotification(true);
   };
 
   return (
@@ -48,6 +69,7 @@ const Registro = () => {
               placeholder="Latitud"
               value={formData.latitud}
               onChange={handleChange}
+              required
             />
             <input
               type="text"
@@ -56,6 +78,7 @@ const Registro = () => {
               placeholder="Longitud*"
               value={formData.longitud}
               onChange={handleChange}
+              required
             />
           </div>
           <h2 className="form-subtitles">Temperatura y tamaño del foco*</h2>
@@ -67,6 +90,7 @@ const Registro = () => {
               placeholder="Temperatura"
               value={formData.temperatura}
               onChange={handleChange}
+              required
             />
             <span className="input-suffix">°C</span>
             <input
@@ -76,6 +100,7 @@ const Registro = () => {
               placeholder="Tamaño*"
               value={formData.tamaño}
               onChange={handleChange}
+              required
             />
             <span className="input-suffix">km²</span>
           </div>
@@ -99,7 +124,7 @@ const Registro = () => {
             </div>
           )}
         </div>
-        <button className="form-buttons" id="blue-button-reg" type="submit">
+        <button className="form-buttons" id="blue-button-reg" >
           Enviar
         </button>
       </form>
