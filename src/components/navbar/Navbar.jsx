@@ -26,13 +26,13 @@ const Navbar = () => {
           type="button"
           className="burger-button"
           aria-controls="navbar-sticky"
-          aria-expanded={isOpen}
+          aria-expanded={isOpen ? "true" : "false"}
         >
           <svg className="burger-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="SVGRepo_iconCarrier">
-              <path d="M5 12H20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"></path>
-              <path d="M5 17H20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"></path>
-              <path d="M5 7H20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"></path>
+              <path d="M5 12H20" stroke="#ffffff" strokeWidth="2" strokeLinecap="round"></path>
+              <path d="M5 17H20" stroke="#ffffff" strokeWidth="2" strokeLinecap="round"></path>
+              <path d="M5 7H20" stroke="#ffffff" strokeWidth="2" strokeLinecap="round"></path>
             </g>
           </svg>
         </button>
