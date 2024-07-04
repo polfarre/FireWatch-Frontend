@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import 'leaflet/dist/leaflet.css'
 import {MapContainer, TileLayer, ZoomControl} from 'react-leaflet'
 import L from 'leaflet'
@@ -14,6 +14,19 @@ L.Icon.Default.mergeOptions({
   iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 });
+
+const createCustomIcon = (color) => {
+  return L.divIcon({
+    html: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="${color}" stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin">
+             <path d="M21 10c0 7.571-9 13-9 13s-9-5.429-9-13a9 9 0 1 1 18 0z"></path>
+             <circle cx="12" cy="10" r="3"></circle>
+           </svg>`,
+    className: '',
+    iconSize: [24, 24],
+    iconAnchor: [12, 24],
+    popupAnchor: [0, -24],
+  });
+};
 
 const SearchField = () => {
   const map = useMap();
@@ -36,7 +49,7 @@ const SearchField = () => {
           <strong>Ciudad:</strong> ${result.label} <br />
           <strong>Latitud:</strong> ${result.y} <br />
           <strong>Longitud:</strong> ${result.x} <br />
-          <button id="buttonIncident">Reportar un incendio</button>
+          <button id="buttonIncidentSearch">Reportar un incendio</button>
         </div>
       `;
     },
@@ -58,9 +71,11 @@ const LocateControl = () => {
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
         map.flyTo([latitude, longitude], 13);
-        L.marker([latitude, longitude]).addTo(map)
-        .bindPopup(`${latitude} , ${longitude} <br/>
-          <button id="buttonIncident">Reportar un incendio</button>`
+        const fireIcon = createCustomIcon("#0476FF");
+        L.marker([latitude, longitude], { icon: fireIcon }).addTo(map)
+        .bindPopup(`<strong>Latitud:</strong> ${latitude} <br/>
+          <strong>Longitud:</strong> ${longitude} <br/> <br/>
+          <button id="buttonIncidentLocate">Reportar incendio</button>`
         )
         .openPopup();
       }, (error) => {
@@ -80,6 +95,56 @@ const LocateControl = () => {
   );
   };
 
+const getColorByIntensity = (intensity) => {
+  if (intensity < 30) {
+    return "#FFBE04";
+  }
+  if (intensity < 60) {
+    return "#FF8D04";
+  }
+  else {
+    return "#FF0404";
+  }
+};
+
+const FireMarkers = () => {
+  const map = useMap();
+
+  useEffect(() => {
+    const apiURL = 'http://0.0.0.0:8000/incendios/';
+
+    fetch(apiURL)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        data.forEach((fire) => {
+          const [fecha, hora] = fire.fecha_hora_adq.split('T');
+          const color = getColorByIntensity(fire.intensidad);
+          const fireIcon = createCustomIcon(color);
+
+          L.marker([fire.latitud, fire.longitud], { icon: fireIcon }).addTo(map)
+            .bindPopup(
+              `
+                <div>
+                  <strong>Incendio reportado</strong> <br/>
+                  <strong>Latitud:</strong> ${fire.latitud} <br/>
+                  <strong>Longitud:</strong> ${fire.longitud} <br/>
+                  <strong>Fecha:</strong> ${fecha} <br/>
+                  <strong>Hora:</strong> ${hora.split('.')[0]} <br/>
+                  <strong>Temperatura:</strong> ${fire.temperatura}C°<br/>
+                  <strong>Area afectada:</strong> ${fire.tamano}m² <br/>
+                  <strong>Intensidad:</strong> ${fire.intensidad}% <br/>
+                <div/>
+              `
+            )
+        });
+      })
+      .catch((error) => console.error('Error:', error));
+  }, [map]);
+
+  return null;
+};
+
 const Map = () => {
   return (
         <MapContainer
@@ -96,8 +161,9 @@ const Map = () => {
              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
            />
            <SearchField />
-            <LocateControl />
-            <ZoomControl position="bottomright" />
+           <LocateControl />
+           <ZoomControl position="bottomright" />
+           <FireMarkers />
         </MapContainer>
   )
 }

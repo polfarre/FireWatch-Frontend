@@ -16,7 +16,7 @@ const Navbar = () => {
         <div className="container-logo">
           <img className="logo" src={firewatch_logo} alt="FireWatch Logo"></img>
         </div>
-        <p className="firewatch">FireWatch</p>
+        <NavLink  to='/' className="firewatch">FireWatch</NavLink>
       </div>
       <div className="container-register-navbar">
         <NavLink className='navlink' to="/login">Iniciar sesión</NavLink>
@@ -65,9 +65,9 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/" className="link">
+          <NavLink to="/registro" className="link">
             Registrar incendio
-          </Link>
+          </NavLink>
         </li>
         <li>
           <Link to="/" className="link">
