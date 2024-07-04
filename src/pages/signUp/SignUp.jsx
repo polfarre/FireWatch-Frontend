@@ -3,6 +3,7 @@ import "./signup.css";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     nombre: "",
@@ -22,20 +23,27 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://0.0.0.0:8000/usuarios/registrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(formData)
-    });
+    try {
+      const response = await fetch("http://0.0.0.0:8000/usuarios/registrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
 
-    if (response.ok) {
-      const data = await response.json();
-      console.log("Usuario registrado:", data);
-      navigate("/login");
-    } else {
-      console.error("Error al registrar el usuario");
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Usuario registrado:", data);
+        navigate("/login");
+      } else {
+        const errorData = await response.json();
+        alert(errorData.detail || "Error al registrar el usuario");
+        console.error("Error al registrar el usuario:", errorData);
+      }
+    } catch (error) {
+      alert(error.message || "Error al registrar el usuario");
+      console.error("Error al registrar el usuario:", error);
     }
   };
 
@@ -59,16 +67,16 @@ const SignUp = () => {
             required
           />
 
-          <label className="sign-subtitles" htmlFor="usuario">
+          <label className="sign-subtitles" htmlFor="username">
             Nombre de usuario
           </label>
           <input
             className="form-input"
             type="text"
-            name="usuario"
-            id="usuario"
+            name="username"
+            id="username"
             placeholder="Nombre de usuario"
-            value={formData.usuario}
+            value={formData.username}
             onChange={handleChange}
             required
           />
